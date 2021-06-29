@@ -1,40 +1,3 @@
-<template>
-  <div class="vue-tempalte">
-    <!-- Navigation -->
-    <Nav />
-
-    <!-- Main -->
-    <div class="App">
-      <div class="vertical-center">
-        <div class="inner-block">
-          <router-view />
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-import Nav from './components/Nav.vue';
-
-
-export default {
-  name: 'App',
-  components: {
-    Nav
-  },
- 
-    created() {
-      if (localStorage.getItem("user_arr") !== null) {
-        const result = JSON.parse(localStorage.getItem('user_arr'));
-        this.$store.dispatch('user', result[0]);
-        console.log('result=>', result[0]);
-      }
-    }
-}
-</script>
-
-<style>
 * {
   box-sizing: border-box;
 }
@@ -55,9 +18,6 @@ html,
   height: 100%;
 }
 
-#app {
-  margin: 0 auto;
-}
 .navbar-light {
   background-color: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
@@ -154,4 +114,3 @@ label {
   transition: none;
   color: #222222;
 }
-</style>
