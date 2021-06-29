@@ -16,10 +16,10 @@
   "ip_address": "229.179.4.212"
 }, {
   "id": 3,
-  "first_name": "Noell",
+  "first_name": "Demo",
   "last_name": "V2",	
-  "password": "Bea",
-  "email": "nbea2@imageshack.us",
+  "password": "demo",
+  "email": "demo@demo.com",
   "gender": "Female",
   "ip_address": "180.66.162.255"
 }, {
