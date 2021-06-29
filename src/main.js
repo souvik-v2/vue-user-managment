@@ -44,7 +44,7 @@ const store = createStore({
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: Home, name: "home" },
+    { path: "/", component: Home, name: "start" },
     { path: "/home", component: Home, name: "home" },
     { path: "/login", component: Login, name: "login" },
     { path: "/register", component: Register, name: "register" },
