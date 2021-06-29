@@ -13,20 +13,30 @@ import UserProfile from "./components/UserProfile.vue";
 const store = createStore({
   state: {
     user: null,
+    task: null,
   },
   getters: {
     user: (state) => {
       return state.user;
+    },
+    task: (state) => {
+      return state.task;
     },
   },
   actions: {
     user(context, user) {
       context.commit("user", user);
     },
+    task(context, task) {
+      context.commit("task", task);
+    },
   },
   mutations: {
     user(state, user) {
       state.user = user;
+    },
+    task(state, task) {
+      state.task = task;
     },
   },
 });

@@ -27,7 +27,13 @@ export default {
     if (localStorage.getItem("user_arr") !== null) {
       const result = JSON.parse(localStorage.getItem("user_arr"));
       this.$store.dispatch("user", result[0]);
-      console.log("result=>", result[0]);
+      //console.log("result=>", result[0]);
+    }
+
+    if (localStorage.getItem("task_arr") !== null) {
+      const taskResult = JSON.parse(localStorage.getItem("task_arr"));
+      this.$store.dispatch("task", taskResult);
+      console.log("Task result=>", taskResult);
     }
   },
 };
@@ -70,7 +76,7 @@ html,
 }
 
 .inner-block {
-  width: 450px;
+  width: 650px;
   margin: auto;
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
