@@ -15,23 +15,22 @@
 </template>
 
 <script>
-import Nav from './components/Nav.vue';
-
+import Nav from "./components/Nav.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Nav
+    Nav,
   },
- 
-    created() {
-      if (localStorage.getItem("user_arr") !== null) {
-        const result = JSON.parse(localStorage.getItem('user_arr'));
-        this.$store.dispatch('user', result[0]);
-        console.log('result=>', result[0]);
-      }
+
+  created() {
+    if (localStorage.getItem("user_arr") !== null) {
+      const result = JSON.parse(localStorage.getItem("user_arr"));
+      this.$store.dispatch("user", result[0]);
+      console.log("result=>", result[0]);
     }
-}
+  },
+};
 </script>
 
 <style>
@@ -40,7 +39,7 @@ export default {
 }
 
 body {
-  background: #2554FF !important;
+  background: #2554ff !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -67,7 +66,7 @@ html,
   display: flex;
   text-align: left;
   justify-content: center;
-  flex-direction: column;    
+  flex-direction: column;
 }
 
 .inner-block {
@@ -77,11 +76,11 @@ html,
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .vertical-center .form-control:focus {
-  border-color: #2554FF;
+  border-color: #2554ff;
   box-shadow: none;
 }
 
@@ -106,7 +105,7 @@ label {
 }
 
 .forgot-password a {
-  color: #2554FF;
+  color: #2554ff;
 }
 
 .social-icons {
