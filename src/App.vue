@@ -25,15 +25,13 @@ export default {
 
   created() {
     if (localStorage.getItem("user_arr") !== null) {
-      const result = JSON.parse(localStorage.getItem("user_arr"));
-      this.$store.dispatch("user", result[0]);
-      //console.log("result=>", result[0]);
+      const userResult = JSON.parse(localStorage.getItem("user_arr"));
+      this.$store.dispatch("user", userResult[0]);
     }
 
     if (localStorage.getItem("task_arr") !== null) {
       const taskResult = JSON.parse(localStorage.getItem("task_arr"));
       this.$store.dispatch("task", taskResult);
-      console.log("Task result=>", taskResult);
     }
   },
 };
