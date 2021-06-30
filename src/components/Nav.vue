@@ -20,13 +20,13 @@
 
       <ul class="nav navbar-nav flex-row float-right" v-if="user">
         <li class="nav-item  float-left">
-          <router-link class="nav-link pr-3" to="/task-list">Task List </router-link>
+          <router-link class="nav-link pr-3" :to="`/task-list/${user.id}`">Task List </router-link>
         </li>
         <li class="nav-item  float-left">
-          <router-link class="nav-link pr-3" to="/create-task">Create Task </router-link>
+          <router-link class="nav-link pr-3" :to="`/create-task/${user.id}`">Create Task </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link pr-3" to="user-profile"
+          <router-link class="nav-link pr-3" :to="`/user-profile/${user.id}`"
             >{{ user.first_name }} {{ user.last_name }}
           </router-link>
         </li>
@@ -49,7 +49,6 @@ export default {
   //props: ['user'],
   methods: {
     handleClick() {
-      localStorage.removeItem("user_arr");
       this.$store.dispatch("user", null);
       this.$router.push("/");
     },

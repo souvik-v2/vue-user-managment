@@ -54,38 +54,14 @@ export default {
         };
 
         const response = await axios.get(
-          "http://localhost:3000/users.jason",
+          "http://localhost:3000/user",
           data
         );
         //console.log(response);
+        const selectedUser = response.data.find(u => (u.email === this.email && u.password === this.password));
 
-        var arrR = response.data.filter(function(ele) {
-          return ele.email == data.email && ele.password == data.password;
-        });
-
-        if (arrR.length) {
-          //console.log('arrR=>', arrR)
-          const jason_data = JSON.stringify(arrR);
-          localStorage.setItem("user_arr", jason_data);
-        } else {
-          var localUser = JSON.parse(localStorage.getItem("user_arr"));
-          var arrRlocal = localUser.filter(function(el) {
-            return el.email == data.email && el.password == data.password;
-          });
-
-          if (arrRlocal.length) {
-            const jason_data = JSON.stringify(arrRlocal);
-            localStorage.setItem("user_arr", jason_data);
-          }
-        }
-
-        if (localStorage.getItem("user_arr") !== null) {
-          const result = JSON.parse(localStorage.getItem("user_arr"));
-          this.$store.dispatch("user", result[0]);
-          this.$router.push("/home");
-        } else {
-          console.log("Auth failed...!");
-        }
+        this.$store.dispatch("user", selectedUser);
+        this.$router.push("/home");
       } catch (e) {
         this.error = "Invalid email/password";
       }

@@ -2,7 +2,7 @@
   <div class="vue-tempalte">
     <form @submit.prevent="handleSubmit">
       <error v-if="error" :error="error" />
-      <h3>Create task</h3>
+      <h3>Create task {{ $route.params.id }}</h3>
 
       <div class="form-group">
         <label>Task Name</label>
@@ -28,7 +28,8 @@
 </template>
 
 <script>
-//import axios from 'axios';
+import { mapGetters } from "vuex";
+import axios from 'axios';
 import Error from "./Error.vue";
 
 
@@ -37,40 +38,32 @@ export default {
   components: {
     Error,
   },
+  computed: {
+    ...mapGetters(["user"]),
+  },
   data() {
     return {
       task_name: "",
       task_description: "",
-      task_arr: [],
-      error: "",
+      error: ""
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       try {
         const data = {
+          user_id: +this.$route.params.uid,
           task_name: this.task_name,
           task_description: this.task_description,
         };
 
-        const res = localStorage.getItem("task_arr");
-        this.task_arr = res ? JSON.parse(res) : [];
-        this.task_arr.push(data);
-        localStorage.setItem("task_arr", JSON.stringify(this.task_arr));
-        this.$store.dispatch("task", JSON.parse(localStorage.getItem("task_arr")));
-        this.$router.push("/task-list");
+        //console.log('uid=>', this.$route.params.uid);
+        await axios.post("http://localhost:3000/task", data);
 
-        // this.task_arr.push(data);
-        // const jason_data = JSON.stringify(this.task_arr);
-        // localStorage.setItem("task_arr", jason_data);
-        
-        // if (localStorage.getItem("task_arr") !== null) {
-        //   const result = JSON.parse(localStorage.getItem("task_arr"));
-        //   this.$store.dispatch("task", result);
-        //   this.$router.push("/task-list");
-        // } else {
-        //   console.log("Task create failed...!");
-        // }
+        //console.log(response);
+        //this.$store.dispatch("task", response.data);
+        this.$router.push("/task-list/" + this.$route.params.uid);
+
       } catch (e) {
         this.error = "Some error occured!!";
       }

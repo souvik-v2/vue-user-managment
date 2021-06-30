@@ -1,0 +1,58 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "first_name": "Souvik",
+      "last_name": "V2",
+      "password": "s",
+      "email": "s@v2.com",
+      "gender": "Male"
+    },
+    {
+      "first_name": "Demo",
+      "last_name": "User",
+      "email": "d@demo.com",
+      "password": "d",
+      "gender": "Female",
+      "id": 2
+    }
+  ],
+  "task": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "task_name": "Vue practice",
+      "task_description": "practice store, route, component code."
+    },
+    {
+      "user_id": 1,
+      "task_name": "Router",
+      "task_description": "create a vue router",
+      "id": 2
+    },
+    {
+      "user_id": 1,
+      "task_name": "Test Task",
+      "task_description": "Test notes",
+      "id": 3
+    },
+    {
+      "user_id": 1,
+      "task_name": "New",
+      "task_description": "Test new",
+      "id": 4
+    },
+    {
+      "user_id": 2,
+      "task_name": "Demo user Task",
+      "task_description": "Demo user create task",
+      "id": 5
+    },
+    {
+      "user_id": 2,
+      "task_name": "2nd task",
+      "task_description": "task details coming soon",
+      "id": 6
+    }
+  ]
+}

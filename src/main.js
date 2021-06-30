@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { createStore } from "vuex";
+import axios from "axios";
 
 import App from "./App.vue";
 import Home from "./components/Home.vue";
@@ -27,15 +28,16 @@ const store = createStore({
     user(context, user) {
       context.commit("user", user);
     },
-    task(context, task) {
-      context.commit("task", task);
+    async getTask({ commit }, userId) {
+      const response = await axios.get("http://localhost:3000/task", {user_id: userId});
+      commit("setTask", response.data);
     },
   },
   mutations: {
     user(state, user) {
       state.user = user;
     },
-    task(state, task) {
+    setTask(state, task) {
       state.task = task;
     },
   },
@@ -48,9 +50,9 @@ const router = createRouter({
     { path: "/home", component: Home, name: "home" },
     { path: "/login", component: Login, name: "login" },
     { path: "/register", component: Register, name: "register" },
-    { path: "/create-task", component: CreateTask, name: "create-task" },
-    { path: "/task-list", component: TaskList, name: "task-list" },
-    { path: "/user-profile", component: UserProfile, name: "user-profile" },
+    { path: "/create-task/:uid", component: CreateTask, name: "create-task" },
+    { path: "/task-list/:uid", component: TaskList, name: "task-list" },
+    { path: "/user-profile/:uid", component: UserProfile, name: "user-profile" },
   ],
 });
 

@@ -24,7 +24,9 @@ export default {
   },
 
   created() {
-    if (localStorage.getItem("user_arr") !== null) {
+    if(this.$route.params.uid)
+      console.log('The id is: ' + this.$route.params.uid);
+    /*if (localStorage.getItem("user_arr") !== null) {
       const userResult = JSON.parse(localStorage.getItem("user_arr"));
       this.$store.dispatch("user", userResult[0]);
     }
@@ -32,7 +34,7 @@ export default {
     if (localStorage.getItem("task_arr") !== null) {
       const taskResult = JSON.parse(localStorage.getItem("task_arr"));
       this.$store.dispatch("task", taskResult);
-    }
+    }*/
   },
 };
 </script>

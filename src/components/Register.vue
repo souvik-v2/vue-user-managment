@@ -35,6 +35,14 @@
       </div>
 
       <div class="form-group">
+        <label>Gender</label>
+        <select v-model="gender" class="form-control form-control-lg" required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label>Password</label>
         <input
           type="password"
@@ -62,7 +70,7 @@
 </template>
 
 <script>
-//import axios from 'axios';
+import axios from 'axios';
 import Error from "./Error.vue";
 
 export default {
@@ -77,30 +85,25 @@ export default {
       email: "",
       password: "",
       password_confirm: "",
-      user_arr: [],
+      gender: "",
       error: "",
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       try {
         const data = {
           first_name: this.first_name,
           last_name: this.last_name,
           email: this.email,
           password: this.password,
-          password_confirm: this.password_confirm,
+          gender: this.gender,
         };
 
-        this.user_arr.push(data);
-
-        const jason_data = JSON.stringify(this.user_arr);
-        localStorage.setItem("user_arr", jason_data);
-
-        //const response = await axios.post('http://localhost:3000/users.jason', data);
-        //console.log(response);
-
+        const response = await axios.post('http://localhost:3000/user', data);
+        this.$store.dispatch("user", response.data);
         this.$router.push("/login");
+        
       } catch (e) {
         this.error = "Some error occured!!";
       }
