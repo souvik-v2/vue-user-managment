@@ -1,5 +1,5 @@
 <template>
-    <h4> Profile Details</h4>
+    <h4> Task Details List</h4>
     <div class="container p-3 my-3 bg-dark text-white">
         <table class="table">
             <tr>

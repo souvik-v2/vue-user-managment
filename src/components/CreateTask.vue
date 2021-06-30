@@ -53,19 +53,24 @@ export default {
           task_description: this.task_description,
         };
 
+        const res = localStorage.getItem("task_arr");
+        this.task_arr = res ? JSON.parse(res) : [];
         this.task_arr.push(data);
+        localStorage.setItem("task_arr", JSON.stringify(this.task_arr));
+        this.$store.dispatch("task", JSON.parse(localStorage.getItem("task_arr")));
+        this.$router.push("/task-list");
 
-        const jason_data = JSON.stringify(this.task_arr);
+        // this.task_arr.push(data);
+        // const jason_data = JSON.stringify(this.task_arr);
+        // localStorage.setItem("task_arr", jason_data);
         
-        localStorage.setItem("task_arr", jason_data);
-        
-        if (localStorage.getItem("task_arr") !== null) {
-          const result = JSON.parse(localStorage.getItem("task_arr"));
-          this.$store.dispatch("task", result);
-          this.$router.push("/task-list");
-        } else {
-          console.log("Task create failed...!");
-        }
+        // if (localStorage.getItem("task_arr") !== null) {
+        //   const result = JSON.parse(localStorage.getItem("task_arr"));
+        //   this.$store.dispatch("task", result);
+        //   this.$router.push("/task-list");
+        // } else {
+        //   console.log("Task create failed...!");
+        // }
       } catch (e) {
         this.error = "Some error occured!!";
       }
