@@ -1,4 +1,4 @@
-# vue-auth
+# vue-user-management
 
 ## Project setup
 ```
