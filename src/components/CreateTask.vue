@@ -28,8 +28,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import axios from 'axios';
+import { mapGetters, mapActions } from "vuex";
 import Error from "./Error.vue";
 
 
@@ -49,19 +48,17 @@ export default {
     };
   },
   methods: {
-    async handleSubmit() {
+    ...mapActions(['createTask']),
+    handleSubmit() {
       try {
         const data = {
           user_id: +this.$route.params.uid,
           task_name: this.task_name,
           task_description: this.task_description,
+          task_date: new Date().toLocaleString()
         };
 
-        //console.log('uid=>', this.$route.params.uid);
-        await axios.post("http://localhost:3000/task", data);
-
-        //console.log(response);
-        //this.$store.dispatch("task", response.data);
+        this.createTask(data);
         this.$router.push("/task-list/" + this.$route.params.uid);
 
       } catch (e) {

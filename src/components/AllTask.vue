@@ -1,6 +1,6 @@
 <template>
     <h3 class="p-3 text-center">
-        My Task List
+        All Task List
     </h3>
     <div class="container">
         <table class="table table-striped table-bordered">
@@ -11,7 +11,7 @@
                 <th scope="col">Task Description</th>
                 <th scope="col">Task Date</th>
             </tr>
-            <tr v-for="(e, p) in myTask" :key="p">
+            <tr scope="row" v-for="(e, p) of task" :key="p">
                 <th scope="col">{{++p}}</th>
                 <td>{{e.user_id}}</td>
                 <td>{{e.task_name}}</td>
@@ -25,18 +25,15 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "TaskList",
+  name: "AllTask",
   computed: {
-    ...mapGetters(["myTask"]),
+    ...mapGetters(["task"]),
   },
   methods: {
-      ...mapActions(["getMyTask"])
+      ...mapActions(["getTask"])
   },
   created() {
-      this.getMyTask(this.$route.params.uid);
-      //console.log(myTask);
-      //this.myTaskList = res.data.filter(u => +u.user_id === +this.$route.params.uid);
-
+      this.getTask();
   }
 };
 </script>

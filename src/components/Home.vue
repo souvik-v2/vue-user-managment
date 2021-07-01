@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2 v-if="user">Hi, {{ user.first_name }} {{ user.last_name }}</h2>
     <h2 v-if="!user">You are not logged in!!</h2>
   </div>

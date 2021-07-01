@@ -1,5 +1,6 @@
 <template>
   <!-- Navigation -->
+  <div>
   <nav
     class="navbar shadow bg-white rounded justify-content-between flex-nowrap flex-row fixed-top"
   >
@@ -20,7 +21,10 @@
 
       <ul class="nav navbar-nav flex-row float-right" v-if="user">
         <li class="nav-item  float-left">
-          <router-link class="nav-link pr-3" :to="`/task-list/${user.id}`">Task List </router-link>
+          <router-link class="nav-link pr-3" :to="`/all-task/${user.id}`">All Task List </router-link>
+        </li>
+        <li class="nav-item  float-left">
+          <router-link class="nav-link pr-3" :to="`/task-list/${user.id}`">My Task List </router-link>
         </li>
         <li class="nav-item  float-left">
           <router-link class="nav-link pr-3" :to="`/create-task/${user.id}`">Create Task </router-link>
@@ -41,6 +45,7 @@
       </ul>
     </div>
   </nav>
+  </div>
 </template>
 <script>
 import { mapGetters } from "vuex";

@@ -9,16 +9,8 @@ npm install
 ```
 npm run serve
 ```
+### Run/Start jason db server to communicate with db.json file
+json-server --watch db.json
 
-### Compiles and minifies for production
+### More Info https://github.com/typicode/json-server
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

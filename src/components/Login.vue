@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 import Error from "./Error.vue";
 
 export default {
@@ -46,21 +46,15 @@ export default {
     };
   },
   methods: {
-    async handleSubmit() {
+    ...mapActions(['getUser']),
+    handleSubmit() {
       try {
         const data = {
           email: this.email,
           password: this.password,
         };
 
-        const response = await axios.get(
-          "http://localhost:3000/user",
-          data
-        );
-        //console.log(response);
-        const selectedUser = response.data.find(u => (u.email === this.email && u.password === this.password));
-
-        this.$store.dispatch("user", selectedUser);
+        this.getUser(data);
         this.$router.push("/home");
       } catch (e) {
         this.error = "Invalid email/password";

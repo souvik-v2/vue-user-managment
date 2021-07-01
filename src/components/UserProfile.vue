@@ -1,10 +1,24 @@
 <template>
-    <h4> Profile Details</h4>
-    <div class="container p-3 my-3 bg-dark text-white">
-        <div class="row" v-for="(value, name) in user" :key="value.email">
-            <div class="col-6 text-uppercase"> {{name}}:</div>
-            <div class="col-6">{{value}}</div>
-        </div>
+    <h3 class="p-3 text-center">
+       Profile Details
+    </h3>
+    <div class="container">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Password</th>
+            </tr>
+            <tr>
+                <th scope="col">{{ user.id }}</th>
+                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.password }}</td>
+            </tr>
+        </table>
     </div>
 </template>
 <script>
@@ -17,8 +31,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.list-group-item {
-    background-color: none;
-}
-</style>
