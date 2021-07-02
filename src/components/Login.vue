@@ -53,6 +53,10 @@ export default {
           email: this.email,
           password: this.password,
         };
+        for (const item in data) {
+          if (data[item] === "")
+            this.error.push(data[item]);
+         }
 
         this.getUser(data);
         this.$router.push("/home");

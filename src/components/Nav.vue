@@ -48,19 +48,18 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Nav",
-  //props: ['user'],
   methods: {
+    ...mapActions(['logout']),
     handleClick() {
-      this.$store.dispatch("user", null);
+      this.logout();
       this.$router.push("/");
     },
   },
   computed: {
     ...mapGetters(["user"]),
-  },
+  }
 };
 </script>
-<style></style>

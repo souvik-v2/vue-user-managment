@@ -30,6 +30,9 @@ const store = createStore({
     },
   },
   actions: {
+    logout ({ commit }) {
+      commit('userLogout', null);
+    },
     async getUser({ commit }, loginData) {
       const response = await axios.get("http://localhost:3000/user");
       const activeUser = response.data.find(u => u.email === loginData.email && u.password === loginData.password);
@@ -50,6 +53,7 @@ const store = createStore({
     },
   },
   mutations: {
+    userLogout : (state, user) => state.user = user,
     setUser : (state, user) => state.user = user,
     setTask: (state, task) => state.task = task,
     setMyTask: (state, myTask) => state.myTask = myTask,
