@@ -1,16 +1,9 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
 import { createStore } from "vuex";
+import router from "./routes";
 import axios from "axios";
 
 import App from "./App.vue";
-import Home from "./components/Home.vue";
-import Login from "./components/Login.vue";
-import Register from "./components/Register.vue";
-import CreateTask from "./components/CreateTask.vue";
-import TaskList from "./components/TaskList.vue";
-import UserProfile from "./components/UserProfile.vue";
-import AllTask from "./components/AllTask.vue";
 
 const store = createStore({
   state: {
@@ -61,52 +54,6 @@ const store = createStore({
   },
 });
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    { path: "/", component: Home, name: "start" },
-    { path: "/home", component: Home, name: "home" },
-    { path: "/login", component: Login, name: "login" },
-    { path: "/register", component: Register, name: "register" },
-    { path: "/create-task/:uid", component: CreateTask, name: "create-task" },
-    { path: "/task-list/:uid", component: TaskList, name: "task-list" },
-    { path: "/user-profile/:uid", component: UserProfile, name: "user-profile" },
-    { path: "/all-task/:uid", component: AllTask, name: "all-task" },
-  ],
-});
-
-router.beforeEach((to, from, next) => {
-  //console.log("To=>", to);
-  //console.log("From=>", from);
-  /*const pages = ["create-task", "task-list", "all-task", "user-profile", "home"];
-  var checkToPages = pages.indexOf(to.name);
-  var checkFromPages = pages.indexOf(from.name);
-  console.log(checkToPages, checkFromPages);
-
-  if (checkToPages != -1) {
-    if (checkFromPages != -1) {*/
-  
-  if (
-    to.name === "create-task" ||
-    to.name === "task-list" ||
-    to.name === "all-task" ||
-    to.name === "user-profile"
-  ) {
-    if (
-      from.name === "home" ||
-      from.name === "create-task" ||
-      from.name === "task-list" ||
-      from.name === "all-task" ||
-      from.name === "user-profile"
-    ) {
-      next();
-    } else {
-      next("login");
-    }
-  } else {
-    next();
-  }
-});
 
 const app = createApp(App);
 

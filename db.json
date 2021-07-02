@@ -19,32 +19,18 @@
   ],
   "task": [
     {
-      "id": 1,
-      "user_id": 1,
-      "task_name": "Vue practice",
-      "task_description": "practice store, route, component code.",
-      "task_date": "1/07/2012 15:07:33"
-    },
-    {
-      "user_id": 2,
-      "task_name": "Router",
-      "task_description": "create a vue router",
-      "id": 2,
-      "task_date": "1/07/2012 15:17:13"
-    },
-    {
       "user_id": 2,
       "task_name": "Login",
       "task_description": "create login function",
       "task_date": "7/1/2021, 12:50:42 PM",
-      "id": 3
+      "id": 1
     },
     {
       "user_id": 1,
       "task_name": "Vuex",
       "task_description": "practice vuex",
       "task_date": "7/1/2021, 2:41:36 PM",
-      "id": 4
+      "id": 2
     }
   ]
 }

@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { useRoute } from 'vue-router';
 import { mapGetters, mapActions } from "vuex";
 import Error from "./Error.vue";
 
@@ -44,15 +45,21 @@ export default {
     return {
       task_name: "",
       task_description: "",
-      error: ""
+      error: "",
+      u_id: ''
     };
+  },
+  mounted() {
+      const route = useRoute();
+      this.u_id = route.params.uid;
   },
   methods: {
     ...mapActions(['createTask']),
     handleSubmit() {
       try {
         const data = {
-          user_id: +this.$route.params.uid,
+          //user_id: +this.$route.params.uid,
+          user_id: +this.u_id,
           task_name: this.task_name,
           task_description: this.task_description,
           task_date: new Date().toLocaleString()
