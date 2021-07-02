@@ -6,7 +6,7 @@
   >
     <div class="container">
       <router-link class="navbar-brand float-left" to="/home">
-        Home
+        {{logoText}}
       </router-link>
       <ul class="nav navbar-nav flex-row float-right" v-if="!user">
         <li class="nav-item">
@@ -51,6 +51,11 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Nav",
+  data() {
+      return {
+        logoText: "TaskApp"
+      }
+  },
   methods: {
     ...mapActions(['logout']),
     handleClick() {
@@ -60,6 +65,12 @@ export default {
   },
   computed: {
     ...mapGetters(["user"]),
+  },
+  watch: {
+    user(val) {
+        this.logoText = (val !== null ? 'Home' : 'TaskApp');
+
+    }
   }
 };
 </script>
