@@ -33,6 +33,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+	
+  let documentTitle = `${ process.env.VUE_APP_TITLE } - ${ to.name }`;
+  if( to.params.title) {
+    documentTitle += ` - ${ to.params.title }`;
+  }
+  document.title = documentTitle;
+  
   const toPages = ["create-task", "task-list", "all-task", "user-profile"];
   const fromPages = [
     "create-task",

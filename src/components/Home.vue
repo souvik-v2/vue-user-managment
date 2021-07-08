@@ -1,17 +1,33 @@
 <template>
-  <div class="container">
-    <h2 v-if="user">Hi, {{ user.first_name }} {{ user.last_name }}</h2>
-    <h2 v-if="!user">You are not logged in!!</h2>
+  <div class="container-fluid">
+    <div class="row" v-if="user">
+      <h2>Hi, {{ user.first_name }} {{ user.last_name }}</h2>
+    </div>
+    <div class="row" v-if="!user">
+      <h2>{{jokes}}</h2>
+      <p><button type="button" class="btn btn-primary" @click="addJoke">New Joke</button></p>
+    </div>
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Home",
-  //props: ['user']
+  methods: {
+    ...mapActions({addJoke: "setCurrentJoke"}),
+    /*...mapActions(["setCurrentJoke"]),
+    addJoke() {
+      this.setCurrentJoke();
+    }*/
+  },
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters({user: "user", jokes: "getCurrentJoke"}),
   },
 };
 </script>
+<style scoped>
+h2 {
+  width: 100%;
+}
+</style>

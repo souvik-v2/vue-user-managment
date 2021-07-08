@@ -23,7 +23,7 @@
       </div>
 
       <button type="submit" class="btn btn-dark btn-lg btn-block">
-        Sign In
+        {{ signIn }}
       </button>
     </form>
   </div>
@@ -43,23 +43,37 @@ export default {
       email: "",
       password: "",
       error: "",
+      signIn: 'Sign In'
     };
+  },
+  computed: {
+    authenticated() {
+      return this.$store.state.user;
+    }
   },
   methods: {
     ...mapActions(['getUser']),
+
     handleSubmit() {
+      this.signIn = 'Sign in...';
       try {
-        const data = {
+        const userData = {
           email: this.email,
           password: this.password,
         };
-        for (const item in data) {
-          if (data[item] === "")
-            this.error.push(data[item]);
-         }
 
-        this.getUser(data);
-        this.$router.push("/home");
+        this.getUser(userData);
+        
+        setTimeout(() => {
+          //console.log('set=>', this.$store.state.user);
+          if( this.$store.state.user !== null ) {
+            this.$router.push("/home");
+          } else {
+            this.error = "Invalid email/password";
+            this.signIn = 'Sign In';
+          }
+        }, 3000);
+        
       } catch (e) {
         this.error = "Invalid email/password";
       }

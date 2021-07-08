@@ -1,30 +1,35 @@
 import { createStore } from "vuex";
 import axios from "axios";
 
+const url = "https://icanhazdadjoke.com/";
+const headers = { Accept: "application/json" };
+
 const store = createStore({
     state: {
       user: null,
       task: null,
       myTask: null,
+      currentJoke: 'Thanks for explaining the word "many" to me. It means a lot.',
+      //allJokes: [],
     },
     getters: {
-      user: (state) => {
-        return state.user;
-      },
-      task: (state) => {
-        return state.task;
-      },
-      myTask: (state) => {
-        return state.myTask;
-      },
+      user: (state) => state.user,
+      task: (state) => state.task,
+      myTask: (state) => state.myTask,
+      getCurrentJoke: (state) => state.currentJoke,
     },
     actions: {
+      async setCurrentJoke(state) {
+        const joke = await fetch(url, { headers });
+        const j = await joke.json();
+        state.commit("setCurrentJoke", j.joke);
+      },
       logout ({ commit }) {
         commit('userLogout', null);
       },
       async getUser({ commit }, loginData) {
         const response = await axios.get("http://localhost:3000/user");
-        const activeUser = response.data.find(u => u.email === loginData.email && u.password === loginData.password);
+        const activeUser = response.data.find(u => u.email === loginData.email && u.password === loginData.password) || null;
         commit("setUser", activeUser);
       },
       async getTask({ commit }) {
@@ -42,6 +47,7 @@ const store = createStore({
       },
     },
     mutations: {
+      setCurrentJoke: (state, joke) => state.currentJoke = joke,
       userLogout : (state, user) => state.user = user,
       setUser : (state, user) => state.user = user,
       setTask: (state, task) => state.task = task,

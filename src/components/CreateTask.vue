@@ -57,7 +57,7 @@ export default {
     ...mapActions(['createTask']),
     handleSubmit() {
       try {
-        const data = {
+        const taskData = {
           //user_id: +this.$route.params.uid,
           user_id: +this.u_id,
           task_name: this.task_name,
@@ -65,7 +65,8 @@ export default {
           task_date: new Date().toLocaleString()
         };
 
-        this.createTask(data);
+        this.createTask(taskData);
+
         this.$router.push("/task-list/" + this.$route.params.uid);
 
       } catch (e) {
